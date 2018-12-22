@@ -1,5 +1,7 @@
 body {
 	background: #444;
+	overflow-x: hidden;
+    overflow-y: hidden;
 
     perspective: 1000px;
 }
@@ -33,7 +35,7 @@ body {
 	color: #000;
 
 	transform-style: preserve-3d;
-	transform-origin: center center -450px;
+	transform-origin: center center 0px;
 	transition: .6s ease-in-out;
 }
 .card_question {
@@ -92,6 +94,9 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
     margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 .card_buttons {

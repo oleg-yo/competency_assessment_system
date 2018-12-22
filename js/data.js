@@ -14,7 +14,7 @@
 			["Так",
 			"Ні"],
 			[1],
-			"q3.jpg",
+			"q3.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_ONE_FROM_MANY,
@@ -23,7 +23,7 @@
 			"Готика і бароко",
 			"Архітектура відродження і бароко"],
 			[0, 1, 2],
-			"q1.jpg",
+			"q1.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_ONE_FROM_MANY,
@@ -32,7 +32,7 @@
 			"Ар-деко",
 			"Модерн"],
 			[1, 0, 2],
-			"q12.jpg",
+			"q12.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_ONE_FROM_MANY,
@@ -41,7 +41,7 @@
 			"Німецький собор на берлінській площі Жандарменмаркт",
 			"Собор Паризької Богоматері у Парижі"],
 			[2, 1, 0],
-			"q13.jpg",
+			"q13.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_ONE_FROM_MANY,
@@ -50,7 +50,7 @@
 			"Сяюча готика",
 			"Танцююча готика"],
 			[0, 1, 2],
-			"q14.jpg",
+			"q14.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_ONE_FROM_MANY,
@@ -60,7 +60,7 @@
 			"Ампір",
 			"Рококо"],
 			[2, 1, 3, 0],
-			"q15.jpg",
+			"q15.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_ONE_FROM_MANY,
@@ -69,7 +69,7 @@
 			"Вілла Фарнезе в Витербо",
 			"Палац Пандольфіні у Флоренції"],
 			[2, 0, 1],
-			"q16.jpg",
+			"q16.jpg"
 		));
 
 		questions.push(g_question.createQuestion(
@@ -80,7 +80,7 @@
 			"Ейфелева вежа спочатку створювалася як найвеличніша конструкція у світі для короля Франції",
 			"Єдиний в Україні 'плоский будинок-стіну' побудовано в Одесі"],
 			[2, 3],
-			"",
+			""
 		));
 
 		questions.push(g_question.createQuestion(
@@ -88,21 +88,21 @@
 			"У якому столітті було побудовано Собор святого Юра у Львові?",
 			[],
 			[18],
-			"q5.jpg",
+			"q5.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_NUMBER,
 			"У якому столітті було відкрито пам'ятник Богдану Хмельницькому у Києві?",
 			[],
 			[19],
-			"q9.jpg",
+			"q9.jpg"
 		));
 		questions.push(g_question.createQuestion(
 			QUESTION_NUMBER,
 			"У якому столітті було побудовано Андріївську церкву у Києві?",
 			[],
 			[18],
-			"q10.jpg",
+			"q10.jpg"
 		));
 		
 		
