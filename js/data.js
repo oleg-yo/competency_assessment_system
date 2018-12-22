@@ -105,27 +105,27 @@
 			"q10.jpg",
 		));
 		
-		questions.push(g_question.createQuestion(
-			QUESTION_INTERVAL,
-			"У якому столітті було побудовано Софійський собор у Києві?",
-			[],
-			[11],
-			"q4.jpg",
-		));
-		questions.push(g_question.createQuestion(
-			QUESTION_INTERVAL,
-			"У якому столітті було побудовано Спасо-Преображенський собор у Чернігові?",
-			[],
-			[11],
-			"q11.png",
-		));
-		questions.push(g_question.createQuestion(
-			QUESTION_INTERVAL,
-			"У якому столітті було побудовано церкву святого Пантелеймона поблизу Галича?",
-			[],
-			[12],
-			"q6.jpg",
-		));
+		// questions.push(g_question.createQuestion(
+		// 	QUESTION_INTERVAL,
+		// 	"У якому столітті було побудовано Софійський собор у Києві?",
+		// 	[],
+		// 	[11],
+		// 	"q4.jpg",
+		// ));
+		// questions.push(g_question.createQuestion(
+		// 	QUESTION_INTERVAL,
+		// 	"У якому столітті було побудовано Спасо-Преображенський собор у Чернігові?",
+		// 	[],
+		// 	[11],
+		// 	"q11.png",
+		// ));
+		// questions.push(g_question.createQuestion(
+		// 	QUESTION_INTERVAL,
+		// 	"У якому столітті було побудовано церкву святого Пантелеймона поблизу Галича?",
+		// 	[],
+		// 	[12],
+		// 	"q6.jpg",
+		// ));
 
 		return questions;
     }

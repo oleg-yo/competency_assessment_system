@@ -234,9 +234,9 @@ function createResultsCard(card_id) {
 		card_buttons.classList.add('card_buttons');
 
 		if (test_finished) {
-			card_result.innerHTML = "<center>Ваш результат: " + 
+			card_result.innerHTML = "Ваш результат: " + 
 			result["result"] + " з " + 
-			result["result_max"] + " балів </center>";
+			result["result_max"] + " балів.";
 		} else {
 			var button_prev = document.createElement('div');
 			button_prev.classList.add('card_button');
