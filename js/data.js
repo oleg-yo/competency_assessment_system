@@ -105,6 +105,7 @@
 			"q10.jpg",
 		));
 		
+		
 		// questions.push(g_question.createQuestion(
 		// 	QUESTION_INTERVAL,
 		// 	"У якому столітті було побудовано Софійський собор у Києві?",
