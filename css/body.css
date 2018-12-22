@@ -38,7 +38,6 @@ body {
 
 	transform-style: preserve-3d;
 	transform-origin: center center -450px;
-	transform: rotateY(0deg);
 	transition: .5s ease-in-out;
 }
 .card_question {

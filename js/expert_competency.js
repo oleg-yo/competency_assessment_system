@@ -44,33 +44,33 @@ function createQuestionCard(card_id) {
 	card.classList.add('card');
 	card.setAttribute('card_id', card_id);
 
-	// 	let card_question = document.createElement('div');
-	// 	card_question.classList.add('card_question');
-	// 	let question_number = (card_id + 1) + "/" + questions_amount
-	// 	card_question.innerText = question_number + ": " + question_this.question;
+		let card_question = document.createElement('div');
+		card_question.classList.add('card_question');
+		let question_number = (card_id + 1) + "/" + questions_amount
+		card_question.innerText = question_number + ": " + question_this.question;
 
-	// 	let card_image = document.createElement('img');
-	// 	card_image.classList.add('card_image');
-	// 	let image_name = question_this.image;
-	// 	if (image_name == "") {
-	// 		image_name = "architecture.jpg"
-	// 	}
-	// 	card_image.src = 'images/' + image_name;
+		let card_image = document.createElement('img');
+		card_image.classList.add('card_image');
+		let image_name = question_this.image;
+		if (image_name == "") {
+			image_name = "architecture.jpg"
+		}
+		card_image.src = 'images/' + image_name;
 
-	// 		var loading_bowl = document.createElement('div');
-	// 		loading_bowl.innerHTML = '<div class="bowl_ringG">'
-	// 			+ '<div class="ball_holderG">'
-	// 				+ '<div class="ballG"></div>'
-	// 			+ '</div>'
-	// 		+ '</div>';
-	// 		loading_bowl.classList.add('loading_bowl');
+			var loading_bowl = document.createElement('div');
+			loading_bowl.innerHTML = '<div class="bowl_ringG">'
+				+ '<div class="ball_holderG">'
+					+ '<div class="ballG"></div>'
+				+ '</div>'
+			+ '</div>';
+			loading_bowl.classList.add('loading_bowl');
 
-	// 		card_image.appendChild(loading_bowl);
+			card_image.appendChild(loading_bowl);
 
-	// 	let card_answer = document.createElement('div');
-	// 	card_answer.classList.add('card_answer');
-	// 	let card_answer_form = createCardAnswerForm(card_id, question_this);
-	// 	card_answer.appendChild(card_answer_form);
+		let card_answer = document.createElement('div');
+		card_answer.classList.add('card_answer');
+		let card_answer_form = createCardAnswerForm(card_id, question_this);
+		card_answer.appendChild(card_answer_form);
 
 		var card_buttons = document.createElement('div');
 		card_buttons.classList.add('card_buttons');
@@ -86,9 +86,9 @@ function createQuestionCard(card_id) {
 		card_buttons.appendChild(button_prev);
 		card_buttons.appendChild(button_next);
 
-	// card.appendChild(card_question);
-	// card.appendChild(card_image);
-	// card.appendChild(card_answer);
+	card.appendChild(card_question);
+	card.appendChild(card_image);
+	card.appendChild(card_answer);
 	card.appendChild(card_buttons);
 
 	document.body.appendChild(card);
