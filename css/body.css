@@ -4,6 +4,8 @@ body {
     overflow-y: hidden;
 
     perspective: 1000px;
+    -webkit-perspective: 1000px;
+    perspective-origin: center center;
 }
 #page_title {
 	width: 100%;
@@ -35,8 +37,8 @@ body {
 	color: #000;
 
 	transform-style: preserve-3d;
-	transform-origin: center center 0px;
-	transition: .6s ease-in-out;
+	transform-origin: center center -450px;
+	transition: .5s ease-in-out;
 }
 .card_question {
 	height: 85px;

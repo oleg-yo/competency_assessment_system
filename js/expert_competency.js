@@ -283,7 +283,7 @@ function changeCardView(old_card, direction) {
 	}, 200);
 	setTimeout(function() {
 		document.body.removeChild(old_card);
-	}, 600);
+	}, 500);
 
 	return new_card;
 }
