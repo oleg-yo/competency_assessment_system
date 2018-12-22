@@ -1,0 +1,176 @@
+body {
+	background: #444;
+
+    perspective: 1000px;
+}
+#page_title {
+	width: 100%;
+	margin: 50px auto 0 auto;
+
+	text-align: center;
+    font-family: "Abyssinica SIL";
+    letter-spacing: 1.5px;
+    color: #eee;
+	text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+    font-size: 40px;
+    font-weight: bold;
+}
+.card {
+	width: 900px;
+	height: 500px;
+	margin: 80px auto 0 auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+
+	background: #fff;
+	border: 4px solid #000;
+	border-radius: 15px;
+
+	text-align: center;
+	font-family: Arial;
+	font-size: 20px;
+	color: #000;
+
+	transform-style: preserve-3d;
+	transform-origin: center center -450px;
+	transition: .6s ease-in-out;
+}
+.card_question {
+	height: 85px;
+	margin: 25px 18px 20px 18px;
+	font-size: 28px;
+	line-height: 34px;
+}
+.card_image {
+	max-width: 270px;
+	max-height: 250px;
+	display: block;
+	float: left;
+	margin: 10px 25px 0 25px;
+	object-fit: contain;
+
+	box-sizing: border-box;
+	border: 2px solid #888;
+
+	-webkit-user-select: none;
+}
+.card_answer {
+	width: 580px;
+	height: 290px;
+	float: left;
+	padding: 30px 15px 0 15px;
+	margin: 0 0 10px 0;
+
+	box-sizing: border-box;
+	position: relative;
+
+	text-align: left;
+	line-height: 30px;
+}
+.card_input_number {
+	width: 250px;
+	height: 40px;
+	margin: 10px 0 10px 0;
+	padding: 0 10px;
+	box-sizing: border-box;
+
+	background: rgba(245, 245, 245, 1);
+	border: 2px solid #888;
+	border-radius: 2px;
+	outline: none;
+
+	color: #222;
+	font-size: 22px;
+
+	transition: .2s;
+}
+.card_input_number:hover {
+	background: rgba(255, 255, 255, 1);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+    margin: 0;
+}
+
+.card_buttons {
+	width: 600px;
+	height: 50px;
+	clear: both;
+	margin: 20px auto 20px auto;
+
+	-webkit-user-select: none;
+}
+.card_button {
+	width: 50%;
+	height: 100%;
+	float: left;
+
+	background: #eee;
+	border: 3px solid #888;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 22px;
+	line-height: 44px;
+
+	cursor: pointer;
+	transition: .1s ease;
+}
+.card_button:hover {
+	background: #bbb;
+	line-height: 47px;
+}
+.card_button:active {
+	background: #aaa;
+}
+.card_button:nth-child(1) {
+	border-radius: 30px 0 0 30px;
+	border-right-width: 2px;
+}
+.card_button:nth-child(2) {
+	border-radius: 0 30px 30px 0;
+	border-left-width: 2px;
+}
+
+
+.loading_bowl {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	margin: 30px auto 0 auto;
+	left: 0;
+	right: 0;
+}
+.bowl_ringG{
+	position:absolute;
+	width:25px;
+	height:25px;
+	border:2px solid rgb(0,0,0);
+	border-radius:25px;
+}
+.ball_holderG{
+	position:absolute;
+	width:7px;
+	height:25px;
+	left:9px;
+	top:0px;
+	animation:ball_moveG .9s infinite linear;
+}
+.ballG{
+	position:absolute;
+	left:0px;
+	top:-6px;
+	width:10px;
+	height:10px;
+	background:rgb(0,0,0);
+	border-radius:8px;
+}
+@keyframes ball_moveG{
+	0%{
+		transform:rotate(0deg)
+	}
+	100%{
+		transform:rotate(360deg)
+	}
+}
