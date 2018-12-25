@@ -2,6 +2,8 @@ const ANSWER_CENTURY_MIN = 0;
 const ANSWER_CENTURY_MAX = 21;
 const ANSWER_CENTURY_DEVIATION = 1;
 
+const SHOW_QUESTION_COMPLEXITY = true;
+
 let last_session_data = {};
 
 let questions_amount = 0;
@@ -79,7 +81,9 @@ function createQuestionCard(card_id) {
 
 		let card_question_complexity = document.createElement('div');
 		card_question_complexity.classList.add('card_question_complexity');
-		card_question_complexity.innerText = "Складність завдання: " + Math.round(question_this.complexity * 1000) / 1000;
+		if (SHOW_QUESTION_COMPLEXITY) {
+			card_question_complexity.innerText = "Складність завдання: " + Math.round(question_this.complexity * 1000) / 1000;
+		}
 
 		let card_image = document.createElement('img');
 		card_image.classList.add('card_image');
