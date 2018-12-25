@@ -21,7 +21,7 @@ body {
 }
 .card {
 	width: 900px;
-	height: 500px;
+	height: 520px;
 	margin: 80px auto 0 auto;
 	position: absolute;
 	left: 0;
@@ -42,16 +42,29 @@ body {
 }
 .card_question {
 	height: 85px;
-	margin: 25px 18px 20px 18px;
+	margin: 25px 18px 15px 18px;
 	font-size: 28px;
 	line-height: 34px;
+}
+.card_question_complexity {
+	width: 400px;
+	height: 30px;
+	left: 0;
+	top: 0;
+	margin: 0px 0 0 25px;
+
+	font-size: 16px;
+	color: rgba(0, 0, 0, .6);
+
+	text-align: left;
+	line-height: 30px;
 }
 .card_image {
 	max-width: 270px;
 	max-height: 250px;
 	display: block;
 	float: left;
-	margin: 10px 25px 0 25px;
+	margin: 20px 25px 0 25px;
 	object-fit: contain;
 
 	box-sizing: border-box;
@@ -63,7 +76,7 @@ body {
 	width: 580px;
 	height: 290px;
 	float: left;
-	padding: 30px 15px 0 15px;
+	padding: 40px 15px 0 15px;
 	margin: 0 0 10px 0;
 
 	box-sizing: border-box;
@@ -105,7 +118,7 @@ input[type=number] {
 	width: 600px;
 	height: 50px;
 	clear: both;
-	margin: 20px auto 20px auto;
+	margin: 0px auto 20px auto;
 
 	-webkit-user-select: none;
 }

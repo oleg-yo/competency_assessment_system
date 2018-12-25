@@ -2,6 +2,8 @@ const ANSWER_CENTURY_MIN = 0;
 const ANSWER_CENTURY_MAX = 21;
 const ANSWER_CENTURY_DEVIATION = 1;
 
+let last_session_data = {};
+
 let questions_amount = 0;
 let questions = [];
 let answers_amount = 0;
@@ -22,6 +24,11 @@ function runOnload() {
 	}
 	questions = g_utils.shuffleArray(questions);
 
+	last_session_data = loadLastSessionData();
+	if (g_utils.isVar(last_session_data) && g_utils.has(last_session_data, 'questions_complexity')) {
+		changeQuestionsComplexity(last_session_data.questions_complexity);
+	}
+
 	var card = createQuestionCard(current_card_id);
 	card.getElementsByClassName('card_buttons')[0].addEventListener('click', changeCardCallback);
 
@@ -37,6 +44,27 @@ function runOnload() {
 	});
 }
 
+function loadLastSessionData() {
+	let last_session_data_json = localStorage.getItem('last_session_data');
+	return JSON.parse(last_session_data_json);
+}
+
+function saveLastSessionData(questions_complexity) {
+	let last_session_data = {};
+	last_session_data["questions_complexity"] = questions_complexity;
+	localStorage.setItem('last_session_data', JSON.stringify(last_session_data));
+}
+
+function changeQuestionsComplexity(new_complexity) {
+	for (let i = 0; i < questions_amount; i++) {
+		let question_id = questions[i].visible.id;
+		if (g_utils.has(new_complexity, question_id)) {
+			questions[i].visible.complexity = new_complexity[question_id];
+			questions[i].hidden.complexity = new_complexity[question_id];
+		}
+	}
+}
+
 function createQuestionCard(card_id) {
 	let question_this = questions[card_id].visible;
 
@@ -48,6 +76,10 @@ function createQuestionCard(card_id) {
 		card_question.classList.add('card_question');
 		let question_number = (card_id + 1) + "/" + questions_amount
 		card_question.innerText = question_number + ": " + question_this.question;
+
+		let card_question_complexity = document.createElement('div');
+		card_question_complexity.classList.add('card_question_complexity');
+		card_question_complexity.innerText = "Складність завдання: " + Math.round(question_this.complexity * 1000) / 1000;
 
 		let card_image = document.createElement('img');
 		card_image.classList.add('card_image');
@@ -87,6 +119,7 @@ function createQuestionCard(card_id) {
 		card_buttons.appendChild(button_next);
 
 	card.appendChild(card_question);
+	card.appendChild(card_question_complexity);
 	card.appendChild(card_image);
 	card.appendChild(card_answer);
 	card.appendChild(card_buttons);
@@ -340,29 +373,35 @@ function saveCardData(card) {
 function evaluateResult() {
 	const RESULT_MAX = questions_amount;
 
+	let questions_complexity = {};
+	let answers_correctness = [];
+
 	let result_sum = 0;
 	for (let i = 0; i < questions_amount; i++) {
 		let answer_ids = answers[i].map(Number);
+		let answer_result = 0;
+
 		switch (questions[i].hidden.type) {
 			case QUESTION_YES_NO: {
 				if (answer_ids[0] == questions[i].hidden.correct_answer_id[0]) {
-					result_sum += 1;
+					answer_result = 1;
 				} else {
-					result_sum -= 1;
+					answer_result = -1;
 				}
 			}
 			break;
 
 			case QUESTION_ONE_FROM_MANY: {
 				if (answer_ids[0] == questions[i].hidden.correct_answer_id[0]) {
-					result_sum += 1;
+					answer_result = 1;
+					answers_correctness
 				} else {
 					let variants_amount = questions[i].hidden.correct_answer_id.length;
 					let step = Math.round(1 / (variants_amount - 1) * 100) / 100;
 					let penalty = 0;
 					for (let j = 0; j < variants_amount; j++) {
 						if (answer_ids[0] == questions[i].hidden.correct_answer_id[j]) {
-							result_sum -= penalty;
+							answer_result -= penalty;
 							break;
 						}
 						penalty += step;
@@ -386,7 +425,7 @@ function evaluateResult() {
 					}
 				}
 				result_sum_local = Math.round(result_sum_local * 10) / 10;
-				result_sum += result_sum_local;
+				answer_result = result_sum_local;
 			}
 			break;
 
@@ -402,22 +441,22 @@ function evaluateResult() {
 					}
 					let answer_difference = Math.abs(answer_ids[0] - questions[i].hidden.correct_answer_id[0]);
 					if (answer_difference > ANSWER_CENTURY_DEVIATION) {
-						result_sum -= 1;
+						answer_result = -1;
 					} else {
 						let penalty = answer_difference * Math.round(1 / ANSWER_CENTURY_DEVIATION * 100) / 100;
-						result_sum += 1 - penalty;
+						answer_result = 1 - penalty;
 					}
 				} else {
-					result_sum -= 1;
+					answer_result = -1;
 				}
 			}
 			break;
 
 			case QUESTION_WORD: {
 				if (answer_ids[0] == questions[i].hidden.correct_answer_id[0]) {
-					result_sum += 1;
+					answer_result = 1;
 				} else {
-					result_sum -= 1;
+					answer_result = -1;
 				}
 			}
 			break;
@@ -432,21 +471,66 @@ function evaluateResult() {
 					if (right_border > ANSWER_CENTURY_MAX) {
 						right_border = ANSWER_CENTURY_MAX;
 					}
-					result_sum += (answer_ids[0] - right_border) / (right_border - left_border);
+					answer_result = (answer_ids[0] - right_border) / (right_border - left_border);
 				} else {
-					result_sum -= 1;
+					answer_result = -1;
 				}
 			}
+			break;
 			case QUESTION_FUZZY_INTERVAL:
+			break;
 
 			case QUESTION_SENTENCE:
+			break;
+		}		
+		result_sum += answer_result;
+		if (answer_result <= 0) {
+			answers_correctness[i] = 0;
+		} else {
+			answers_correctness[i] = 1;
 		}
 	}
+
+	let result_mark = ((result_sum + RESULT_MAX) * 0.5 / (RESULT_MAX + RESULT_MAX)) + 0.5;
+
+	for (let i = 0; i < questions_amount; i++) {
+		let answer_ids = answers[i].map(Number);
+		let new_complexity = questions[i].visible.complexity;
+		switch (questions[i].hidden.type) {
+			case QUESTION_YES_NO:
+			case QUESTION_ONE_FROM_MANY:
+			case QUESTION_SOME_FROM_MANY: {
+				new_complexity = countNewQuestionComplexity(i, questions[i].visible.complexity, result_mark, answers_correctness);
+			}
+			break;
+		}
+		questions_complexity[questions[i].visible.id] = new_complexity;
+	}
+
 	if (result_sum > RESULT_MAX) {
 		result_sum = RESULT_MAX;
 	}
 	result['result'] = result_sum;
 	result['result_max'] = RESULT_MAX;
+
+	saveLastSessionData(questions_complexity);
+}
+
+function countNewQuestionComplexity(question_number, last_complexity, result_mark, answers_correctness) {
+	let result = 0;
+	if (!answers_correctness[question_number]) {
+		result = last_complexity + (result_mark * (1 - last_complexity));
+	} else {
+		result = last_complexity * result_mark;
+	}
+	if (result == 0) {
+		result += 0.001;
+	} else if (result == 1) {
+		result -= 0.001;
+	}
+	console.log("Question number:", question_number, "Last complexity:", last_complexity, "Student overal mark:", result_mark, "Student answers:", answers_correctness, "New complexity:", result);
+	
+	return result;
 }
 
 window.onload = runOnload();
