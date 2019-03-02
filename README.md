@@ -1,3 +1,7 @@
+https://oleg-yo.github.io/competency_assessment_system/
+
+---
+
 ### **Competency assessment system**
 
 Evaluating expert competency in theme of architecture.
@@ -10,7 +14,3 @@ Assessment system with different types of questions:
 * number interval answer
 * word answer
 * sentence answer
-
----
-
-https://oleg-yo.github.io/competency_assessment_system/
